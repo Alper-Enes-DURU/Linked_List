@@ -7,8 +7,9 @@ class LinkedListNode
   end
 end
 
+
 class Stack
-  attr_reader :data
+  #attr_reader :data
 
   def initialize
     @data = nil
@@ -42,16 +43,22 @@ def print_values(list_node)
 end
 
 
-def reverse_list(list)
+def reverse_list(node)
   #some code
   stack = Stack.new
-  while list
+  current_node = node
+  while node
     #add code(list.value)
-    stack.push(list.value)
-    list = list.next_node
+    stack.push(node.value)
+    node = node.next_node
   end
   #add code
-  LinkedListNode.new(stack.pop, stack.data)
+  new_list = LinkedListNode.new
+  while current_node != nil
+    #print "#{stack.pop} " 
+    new_list(stack.pop)
+    current_node = current_node.next_node
+  end
 end
 
 
