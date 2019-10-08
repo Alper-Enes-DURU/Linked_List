@@ -9,8 +9,6 @@ end
 
 
 class Stack
-  #attr_reader :data
-
   def initialize
     @data = nil
   end
@@ -42,25 +40,29 @@ def print_values(list_node)
   end
 end
 
-
 def reverse_list(node)
-  #some code
   stack = Stack.new
-  current_node = node
+
   while node
-    #add code(list.value)
     stack.push(node.value)
     node = node.next_node
   end
-  #add code
-  new_list = LinkedListNode.new
-  while current_node != nil
-    #print "#{stack.pop} " 
-    new_list(stack.pop)
-    current_node = current_node.next_node
-  end
-end
 
+  current_value = stack.pop
+  current_node = LinkedListNode.new(current_value)
+  first_node = current_node # save the first node to pass back
+
+  while current_value != nil
+    current_value = stack.pop
+    if current_value ==  nil
+      break
+    end
+    next_node = LinkedListNode.new(current_value)
+    current_node.next_node = next_node # (37,nil).next_node = (99,nil)
+    current_node = next_node
+  end
+  return first_node
+end
 
 node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
@@ -70,4 +72,3 @@ print_values(node3)
 puts "--------"
 revlist= reverse_list(node3)
 print_values(revlist)
-
